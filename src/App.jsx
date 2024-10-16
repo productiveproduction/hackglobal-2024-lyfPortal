@@ -23,7 +23,7 @@ export default function App() {
           count is {count}
         </Button>
         <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+          Edit <code>src/App.jsx</code> and save to Template HMR
         </p>
       </Card>
       <ReadTheDocs>
