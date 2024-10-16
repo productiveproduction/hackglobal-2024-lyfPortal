@@ -1,4 +1,27 @@
 :root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --primary: #000000;
+  --primary-foreground: #ffffff;
+  --primary-hover: #333333;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #000000;
+  --secondary-hover: #e2e8f0;
+  --accent: #f1f5f9;
+  --accent-foreground: #000000;
+  --destructive: #ff0000;
+  --destructive-foreground: #ffffff;
+  --ring: #94a3b8;
+  --radius: 0.5rem;
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -11,6 +34,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
 a {
@@ -28,6 +58,9 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 h1 {
