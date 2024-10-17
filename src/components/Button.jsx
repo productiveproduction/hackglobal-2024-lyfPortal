@@ -9,6 +9,7 @@ const StyledButton = styled.button`
   font-weight: 500;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s;
   cursor: pointer;
+  border: none;
 
   ${props => props.variant === 'primary' && `
     background-color: var(--primary);
@@ -22,6 +23,16 @@ const StyledButton = styled.button`
   ${props => props.variant === 'secondary' && `
     background-color: var(--secondary);
     color: var(--secondary-foreground);
+
+    &:hover {
+      background-color: var(--secondary-hover);
+    }
+  `}
+
+  ${props => props.variant === 'outline' && `
+    background-color: transparent;
+    color: var(--primary);
+    border: 2px solid var(--theme);
 
     &:hover {
       background-color: var(--secondary-hover);
