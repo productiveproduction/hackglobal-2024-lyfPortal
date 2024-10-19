@@ -1,31 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { MessageCircle, Users, Star } from 'lucide-react';
-
-const navItems = [
-  { icon: Users , label: 'Channels' },
-  { icon: MessageCircle , label: 'Chats' },
-  { icon: Star, label: 'Rewards' },
-];
+import { useTablistStore } from '../store/tablist';
+import { useNavigate } from 'react-router-dom';
+import routes from '../routes';
 
 export default function Tablist() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const activeIndex = useTablistStore((state) => state.activeIndex);
+  const setActiveIndex = useTablistStore((state) => state.setActiveIndex);
+  const navigate = useNavigate();
 
-  const handleNavButtonClick = (index) => {
+  const handleNavButtonClick = (index, path) => {
     setActiveIndex(index);
+    navigate(path);
   };
 
   return (
     <Navigation>
       <NavContainer>
-        {navItems.map((item, index) => (
+        {routes.map((item, index) => (
           <NavButton
             key={index}
             active={activeIndex === index}
-            onClick={() => handleNavButtonClick(index)}
+            onClick={() => handleNavButtonClick(index, item.path)}
           >
             <item.icon size={20} />
-            <NavLabel>{item.label}</NavLabel>
+            <NavLabel>{item.title}</NavLabel>
           </NavButton>
         ))}
       </NavContainer>
