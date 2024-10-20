@@ -1,23 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTablistStore } from '../store/tablist';
-import { useNavigate } from 'react-router-dom';
-import routes from '../routes';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { tablistRoutes, pagesRoutes } from '../routes';
 
 export default function Tablist() {
   const activeIndex = useTablistStore((state) => state.activeIndex);
   const setActiveIndex = useTablistStore((state) => state.setActiveIndex);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleNavButtonClick = (index, path) => {
     setActiveIndex(index);
     navigate(path);
   };
 
+  const isRouteInPagesRoutes = pagesRoutes.some((route) =>
+    location.pathname.startsWith(route.path)
+  );
+
   return (
-    <Navigation>
+    <Navigation style={{ display: isRouteInPagesRoutes ? 'none' : 'block' }}>
       <NavContainer>
-        {routes.map((item, index) => (
+        {tablistRoutes.map((item, index) => (
           <NavButton
             key={index}
             active={activeIndex === index}

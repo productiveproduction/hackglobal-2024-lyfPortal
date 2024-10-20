@@ -1,14 +1,18 @@
 import { Route, Routes } from 'react-router-dom';
-import routes from './index';
+import { tablistRoutes, pagesRoutes } from './index';
 // import { getPageHeight } from './utils';
 
 function Pages() {
   return (
     // <Box sx={{ height: (theme) => getPageHeight(theme) }}>
       <Routes>
-        {routes.map(({ path, component: Component }) => {
-          return <Route key={path} path={path} element={<Component />} />;
-        })}
+        {
+          [ ...tablistRoutes, 
+            ...pagesRoutes
+          ].map(({ path, component: Component }) => {
+            return <Route key={path} path={path} element={<Component />} />;
+          })
+        }
       </Routes>
     // </Box>
   );

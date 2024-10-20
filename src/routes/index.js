@@ -1,7 +1,7 @@
 import asyncComponentLoader from '../utils/loader/index';
 import { MessageCircle, Users, Star } from 'lucide-react';
 
-const routes = [
+export const tablistRoutes = [
   {
     component: asyncComponentLoader(() => import('../pages/tabs/Channels')),
     path: '/',
@@ -20,10 +20,26 @@ const routes = [
     title: 'Rewards',
     icon: Star
   }
+];
+
+export const pagesRoutes = [
+  {
+    component: asyncComponentLoader(() => import('../pages/Connect')),
+    path: '/connect',
+    title: 'Connect'
+  },
+  {
+    component: asyncComponentLoader(() => import('../pages/Profile')),
+    path: '/profile',
+    title: 'Profile'
+  },
+  {
+    component: asyncComponentLoader(() => import('../pages/Invite')),
+    path: '/invite',
+    title: 'Connect'
+  },
   // ["NotFound"]: {
   //   component: asyncComponentLoader(() => import('../pages/NotFound')),
   //   path: '*',
   // },
-];
-
-export default routes;
+]
