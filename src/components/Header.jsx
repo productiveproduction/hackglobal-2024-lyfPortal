@@ -24,7 +24,7 @@ export default function Header() {
               size="small"
               onClick={() => navigate('/connect')}
             >
-              05e6 80% 
+              not connected 
             </Button>
         }
         <LogoTitle
