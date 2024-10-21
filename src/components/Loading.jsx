@@ -8,7 +8,7 @@ export default function Loading() {
           <Logo
             src="/LYF-LOGO.jpg"
             alt="Lyf Logo"
-            fetchpriority="high"
+            $fetchpriority="high"
             decoding="async"
           />
           <Loader />

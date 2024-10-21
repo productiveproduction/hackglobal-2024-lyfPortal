@@ -25,7 +25,7 @@ export default function Tablist() {
         {tablistRoutes.map((item, index) => (
           <NavButton
             key={index}
-            active={activeIndex === index}
+            $active={(activeIndex === index).toString()}
             onClick={() => handleNavButtonClick(index, item.path)}
           >
             <item.icon size={20} />

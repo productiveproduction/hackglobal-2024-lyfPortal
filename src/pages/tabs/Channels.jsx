@@ -10,7 +10,7 @@ export default function Channels() {
     <>
       <Title>Vite + React</Title>
       <Card>
-        <Button variant="primary" size="medium" onClick={() => setCount((count) => count + 1)}>
+        <Button $variant="primary" size="medium" onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </Button>
       </Card>

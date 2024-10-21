@@ -20,7 +20,7 @@ export default function Header() {
           isRouteInPagesRoutes
           ? <MoveLeft size={42} onClick={() => navigate(-1)} />
           : <Button 
-              variant="outline" 
+              $variant="outline" 
               size="small"
               onClick={() => navigate('/connect')}
             >
@@ -29,7 +29,7 @@ export default function Header() {
         }
         <LogoTitle
           alt="1"
-          fetchpriority="high"
+          $fetchpriority="high"
           width="50"
           height="50"
           decoding="async"
@@ -38,7 +38,7 @@ export default function Header() {
         />
         <RightSection>
           <Button 
-            variant="primary" 
+            $variant="primary" 
             size="small"
             onClick={() => navigate('/invite')}
           >

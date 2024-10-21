@@ -11,7 +11,7 @@ const StyledButton = styled.button`
   cursor: pointer;
   border: none;
 
-  ${props => props.variant === 'primary' && `
+  ${props => props.$variant === 'primary' && `
     background-color: var(--primary);
     color: var(--primary-foreground);
 
@@ -20,7 +20,7 @@ const StyledButton = styled.button`
     }
   `}
 
-  ${props => props.variant === 'secondary' && `
+  ${props => props.$variant === 'secondary' && `
     background-color: var(--secondary);
     color: var(--secondary-foreground);
 
@@ -29,7 +29,7 @@ const StyledButton = styled.button`
     }
   `}
 
-  ${props => props.variant === 'outline' && `
+  ${props => props.$variant === 'outline' && `
     background-color: transparent;
     color: var(--primary);
     border: 2px solid var(--theme);
@@ -59,7 +59,7 @@ const Button = React.forwardRef(({ className, variant, size, ...props }, ref) =>
   return (
     <StyledButton
       className={className}
-      variant={variant}
+      $variant={variant}
       size={size}
       ref={ref}
       {...props}

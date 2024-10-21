@@ -1,9 +1,89 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Plus } from 'lucide-react';
 import { Button } from '../components/Button';
 
+import { useAppStore } from "../store/appStore.js";
+import { useDeviceStore } from "../store/deviceStore.js";
+import { subscribeAll } from "../utils/subscriptions.js";
+import { randId } from "../utils/randId.js";
+import { BleConnection, Constants } from "@meshtastic/js";
+
 export default function Connect() {
+  // const [bleDevices, setBleDevices] = useState([]);
+  const { addDevice } = useDeviceStore();
+  const { setSelectedDevice } = useAppStore();
+  const [pairedDevice, setPairedDevice] = useState(null); // Store the paired device
+  const [connectionStatus, setConnectionStatus] = useState('not connected');
+  
+  // const updateBleDeviceList = useCallback(async () => {
+  //   try {
+  //     if (!navigator.bluetooth) {
+  //       console.log('Web Bluetooth is NOT supported');
+  //       return;
+  //     }
+
+  //     // Request and connect to devices (You may want to filter for specific devices)
+  //     const device = await navigator.bluetooth.requestDevice({ 
+  //       acceptAllDevices: true, // For testing, accept all devices 
+  //       // filters: [{ services: [Constants.ServiceUuid] }] // For specific devices
+  //     });
+
+  //     // Check if the device already exists in the state
+  //     const exists = bleDevices.findIndex((d) => d.id === device.id);
+  //     if (exists === -1) {
+  //       setBleDevices([...bleDevices, device]); // Add if new
+  //     }
+  //   } catch (error) {
+  //     console.error('Error discovering or connecting:', error);
+  //   }
+  // }, [bleDevices]); 
+
+  // useEffect(() => {
+  //   updateBleDeviceList();
+  // }, [updateBleDeviceList]);
+
+  const pairDevice = async () => {
+    try {
+      const device = await navigator.bluetooth.requestDevice({
+        filters: [{ services: [Constants.ServiceUuid] }],
+      });
+      setPairedDevice(device); // Store the paired device
+      onConnect(device)
+      // Instead of adding to bleDevices, update the text directly
+    } catch (error) {
+      console.error('Error pairing device:', error);
+    }
+  };
+
+  const onConnect = async (bleDevice) => {
+    const id = randId();
+    const device = addDevice(id);
+    setSelectedDevice(id);
+    const connection = new BleConnection(id);
+
+    try {
+      setConnectionStatus('connecting to...'); // Update status to connecting
+      await connection.connect({
+        device: bleDevice,
+      });
+
+      setConnectionStatus('connected'); // Update status to connected
+
+      device.addConnection(connection);
+      subscribeAll(device, connection);
+      // closeDialog();
+    } catch (error) {
+      console.error('Error connecting:', error);
+      setConnectionStatus('not connected'); // Reset status on error
+    }
+  };
+
+  const unpairDevice = () => {
+    setPairedDevice(null); // Clear the paired device
+  };
+
+
   return (
     <Container>
       <CardContainer>
@@ -12,19 +92,39 @@ export default function Connect() {
           <Logo
             src="/LYF-LOGO.jpg"
             alt="Lyf Logo"
-            fetchpriority="high"
+            $fetchpriority="high"
             decoding="async"
           />
-          <p>meshtastic</p>
-          <p>not connected</p>
+          <p>{pairedDevice ? connectionStatus : 'meshtastic'}</p> 
+          <p>{pairedDevice ? pairedDevice.name : connectionStatus}</p> 
         </CardContent>
       </CardContainer>
-      <ConnectionButton
-        variant="primary"
-        size="small"
-      >
-        <Plus /> <span/> New Connection
-      </ConnectionButton>
+      {!pairedDevice && ( // Render "New Connection" when unpaired
+        <ConnectionButton
+          variant="primary"
+          size="small"
+          onClick={pairDevice} 
+        >
+          <Plus size={16} /> <span /> New Connection
+        </ConnectionButton>
+      )}
+
+      {connectionStatus === 'connected' && ( // Render "Connect" when paired
+        <>
+          {/* <ConnectionButton
+            variant="primary"
+            size="large"
+            onClick={() => onConnect(pairedDevice)}
+          >
+            Connect Device
+          </ConnectionButton> */}
+
+          {/* Optional: Add an "Unpair" button */}
+          <Button $variant="secondary" size="small" onClick={unpairDevice}>
+            Unpair
+          </Button>
+        </>
+      )}
     </Container>
   );
 };
