@@ -1,24 +1,19 @@
-import { useState } from 'react'
+import { BrowserRouter } from 'react-router-dom';
 import styled from 'styled-components'
-import { Button } from './components/Button'
 import Header from './components/Header'
 import Tablist from './components/Tablist'
+import Pages from './routes/Pages';
 
 export default function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-    <Header/>
-    <AppContainer>
-      <Tablist/>
-      <Title>Vite + React</Title>
-      <Card>
-        <Button variant="primary" size="medium" onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </Button>
-      </Card>
-    </AppContainer>
+      <BrowserRouter>
+        <Header/>
+        <AppContainer>
+          <Tablist/>
+          <Pages/>
+        </AppContainer>
+      </BrowserRouter>
     </>
   )
 }
@@ -29,13 +24,4 @@ const AppContainer = styled.div`
   align-items: center;
   flex: 1 1 0%;
   width: 100%;
-`
-
-const Title = styled.h1`
-  font-size: 3.2em;
-  line-height: 1.1;
-`
-
-const Card = styled.div`
-  padding: 2em;
 `

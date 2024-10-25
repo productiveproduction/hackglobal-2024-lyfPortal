@@ -6,17 +6,17 @@ export default function Header() {
   return (
     <Container>
       <HeaderContainer>
-        <Button variant="outline" size="small">05e6 80%</Button>
+        <Button $variant="outline" size="small">05e6 80%</Button>
         <LogoTitle
           alt="1"
-          fetchpriority="high"
+          $fetchpriority="high"
           width="50"
           height="50"
           decoding="async"
           src="/LYF-LOGO.jpg"
         />
         <RightSection>
-          <Button variant="primary" size="small">Invite</Button>
+          <Button $variant="primary" size="small">Invite</Button>
           <HeaderAvatar/>
         </RightSection>
       </HeaderContainer>
