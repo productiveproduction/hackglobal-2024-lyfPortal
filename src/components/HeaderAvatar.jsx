@@ -1,12 +1,16 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 export default function HeaderAvatar() {
+  const navigate = useNavigate();
+
   return (
     <AvatarButton
       type="button"
       aria-haspopup="dialog"
       aria-expanded="false"
       data-state="closed"
+      onClick={() => navigate('/profile')}
     >
       <AvatarWrapper>
         <AvatarInner>

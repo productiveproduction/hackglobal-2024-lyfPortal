@@ -1,12 +1,32 @@
 import styled from 'styled-components';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { MoveLeft } from 'lucide-react';
 import { Button } from './Button';
 import HeaderAvatar from './HeaderAvatar';
+import { pagesRoutes } from '../routes';
 
 export default function Header() {
+  const navigate = useNavigate();
+  const location = useLocation(); 
+
+  const isRouteInPagesRoutes = pagesRoutes.some((route) =>
+    location.pathname.startsWith(route.path)
+  );
+
   return (
     <Container>
       <HeaderContainer>
-        <Button $variant="outline" size="small">05e6 80%</Button>
+        {
+          isRouteInPagesRoutes
+          ? <MoveLeft size={42} onClick={() => navigate(-1)} />
+          : <Button 
+              $variant="outline" 
+              size="small"
+              onClick={() => navigate('/connect')}
+            >
+              05e6 80% 
+            </Button>
+        }
         <LogoTitle
           alt="1"
           $fetchpriority="high"
@@ -14,9 +34,16 @@ export default function Header() {
           height="50"
           decoding="async"
           src="/LYF-LOGO.jpg"
+          style={{display: isRouteInPagesRoutes ? 'none' : 'block'}}
         />
         <RightSection>
-          <Button $variant="primary" size="small">Invite</Button>
+          <Button 
+            $variant="primary" 
+            size="small"
+            onClick={() => navigate('/invite')}
+          >
+            Invite
+          </Button>
           <HeaderAvatar/>
         </RightSection>
       </HeaderContainer>
