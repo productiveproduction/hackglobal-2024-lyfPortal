@@ -12,7 +12,8 @@
     pkgs.bun
     pkgs.python312
     pkgs.python312Packages.pip
-    
+    pkgs.python312Packages.litellm
+    pkgs.python312Packages.fastapi
   ];
   # Sets environment variables in the workspace
   env = {};
@@ -25,6 +26,7 @@
       # Runs when a workspace is first created with this `dev.nix` file
       onCreate = {
         npm-install = "npm ci --no-audit --prefer-offline --no-progress --timing";
+        pip-install = "pip install 'litellm[proxy]'";
         # Open editors for the following files by default, if they exist:
         default.openFiles = [ "src/App.tsx" "src/App.ts" "src/App.jsx" "src/App.js" ];
       };
