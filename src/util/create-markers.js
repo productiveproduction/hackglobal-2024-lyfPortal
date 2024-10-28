@@ -254,7 +254,9 @@ async function handleClickOnMarker(click, pois) {
     toggleSidebar("close");
   } else {
     setSelectedMarker(marker);
-    if (currentPoi.name === "CAPSULE") {
+    if (["CAPSULE", "lyfPortal"].some(
+      value => currentPoi.name.includes(value)
+    )) {
       window.open(currentPoi.url, '_blank').focus();
     } else {
       toggleSidebar("open");

@@ -69,11 +69,13 @@ export const updateMarkers = async () => {
       poi: poiConfig,
     } = getConfigCenterConfig();
 
-    // based on the given main location, fetch the surrounding POIs of the selected categories
-    const pois = await getNearbyPois(poiConfig, coordinates);
+    const poiConfigJam = {
+      ...poiConfig,
+      types: ["store", "movie_theater", "parking"],
+    };
 
-    const clonePois = [...pois];
-    console.log("======= pois", clonePois)
+    // based on the given main location, fetch the surrounding POIs of the selected categories
+    const pois = await getNearbyPois(poiConfigJam, coordinates);
     
     // Fusionpolis, Singapore
     if (coordinates.lat == 1.299774 && coordinates.lng == 103.78832) {
@@ -100,6 +102,50 @@ export const updateMarkers = async () => {
         pois[id].icon_mask_base_uri = "https://irp.cdn-website.com/57267e60/dms3rep/multi/Time-capsule-messages"
         pois[id].icon_background_color = "#0424BF"
         pois[id].name = "CAPSULE"
+        pois[id].url = link
+      })
+    }
+
+    // Princep Street, Singapore
+    if (coordinates.lat == 1.3007775 && coordinates.lng == 103.8505572) {
+      [
+        {id: 12, link: "https://lumalabs.ai/capture/9da3a9bd-dc90-49c1-864c-e7bbddb04e2f"},
+        {id: 18, link: "https://lumalabs.ai/capture/cc164b69-e39c-4bab-b882-8dcac752790f"},
+        {id: 3, link: "https://lumalabs.ai/capture/a15cd58a-fb3d-41df-9d42-05ff5e64770e"},
+        {id: 9, link: "https://lumalabs.ai/capture/20b9294c-92f3-48b6-9714-5f5e29cc9813"},
+      ].map(({id, link}) => {
+        pois[id].icon_mask_base_uri = "https://irp.cdn-website.com/57267e60/dms3rep/multi/Time-capsule-messages"
+        pois[id].icon_background_color = "#0424BF"
+        pois[id].name = "CAPSULE"
+        pois[id].url = link
+      })
+    }
+    
+    // football match (national stadium)
+    if (coordinates.lat == 1.3020 && coordinates.lng == 103.8765) {
+      [
+        {id: 5, link: "https://lumalabs.ai/capture/7402db1e-da97-4a6c-8281-031fc0939452"},
+        {id: 6, link: "https://lumalabs.ai/capture/e8f57ff4-463c-48ad-b018-fbf61f270d90"},
+        {id: 7, link: "https://lumalabs.ai/capture/6ea52caf-5ed7-49f9-ac97-4050ba7fab06"},
+        {id: 8, link: "https://lumalabs.ai/capture/720fcb9a-303e-492f-b7f7-b10fbd4dd652"},
+      ].map(({id, link}) => {
+        pois[id].icon_mask_base_uri = "https://irp.cdn-website.com/57267e60/dms3rep/multi/Time-capsule-messages"
+        pois[id].icon_background_color = "#0424BF"
+        pois[id].name = "CAPSULE"
+        pois[id].url = link
+      })
+    }
+
+    // lyf Funan
+    if (coordinates.lat ==  1.2917357 && coordinates.lng == 103.8494682) {
+      [
+        {id: 1, link: "https://scaniverse.com/scan/gwv7hmjvfpygzzri"},
+        {id: 14, link: "https://keanecodes.8thwall.app/lyf-table-game/"},
+        {id: 22, link: "https://keanecodes.8thwall.app/lyf-lobby/"},
+      ].map(({id, link}) => {
+        pois[id].icon_mask_base_uri = "https://irp.cdn-website.com/57267e60/dms3rep/multi/Time-capsule-messages"
+        pois[id].icon_background_color = "#0424BF"
+        pois[id].name = "lyfPortal"
         pois[id].url = link
       })
     }
