@@ -276,7 +276,7 @@ export const useDeviceStore = create<DeviceState>((set, get) => ({
                   return;
                 }
                 const workingConfigIndex = device?.workingConfig.findIndex(
-                  (wc) => wc.payloadVariant.case === config.payloadVariant.case,
+                  (wc: Protobuf.Config.Config) => wc.payloadVariant.case === config.payloadVariant.case,
                 );
                 if (workingConfigIndex !== -1) {
                   device.workingConfig[workingConfigIndex] = config;
@@ -297,7 +297,7 @@ export const useDeviceStore = create<DeviceState>((set, get) => ({
                 }
                 const workingModuleConfigIndex =
                   device?.workingModuleConfig.findIndex(
-                    (wmc) =>
+                    (wmc: Protobuf.ModuleConfig.ModuleConfig) =>
                       wmc.payloadVariant.case ===
                       moduleConfig.payloadVariant.case,
                   );
@@ -401,7 +401,7 @@ export const useDeviceStore = create<DeviceState>((set, get) => ({
                 const device = draft.devices.get(id);
                 if (device) {
                   const waypointIndex = device.waypoints.findIndex(
-                    (wp) => wp.id === waypoint.id,
+                    (wp: Protobuf.Mesh.Waypoint) => wp.id === waypoint.id,
                   );
 
                   if (waypointIndex !== -1) {
