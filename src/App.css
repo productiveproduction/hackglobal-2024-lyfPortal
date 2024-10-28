@@ -1,0 +1,155 @@
+.top-bar {
+    width: 30%;
+    margin: 0 auto;
+}
+
+.top-bar:hover {
+    cursor: pointer;
+}
+
+.top-bar * {
+    cursor: pointer;
+}
+
+.top-bar ion-searchbar.ios.custom,
+.top-bar ion-searchbar.md.custom {
+    --border-radius: unset;
+    --box-shadow: none;
+    border: 0.1rem solid transparent;
+    border-radius: 50px;
+    transition: border-color 0.3s ease-in-out;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.top-bar ion-searchbar.ios.custom input,
+.top-bar ion-searchbar.md.custom input {
+    background: transparent;
+}
+
+.top-bar:hover ion-searchbar.ios.custom,
+.top-bar:hover ion-searchbar.md.custom {
+    border-color: black;
+}
+
+.modal {
+    padding: 80px 20px 100px;
+}
+
+.modal ion-input {
+    /* margin: 0 3rem; */
+    --highlight-color-focused: none;
+
+}
+
+.test {
+    border-radius: 10px;
+    width: 100%;
+    padding: 25px;
+    font-size: 1.1em;
+    /* smooth scroll */
+    scroll-behavior: smooth;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.demo-canvas {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: auto;
+    min-width: 10px;
+    touch-action: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+
+.demo-menu {
+    background: white;
+
+    border-radius: 10px;
+
+    padding: 25px;
+    width: auto;
+    height: 100%;
+    font-size: 1.1em;
+
+    /* subtle shadow */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    overflow: auto;
+
+    /* smooth scroll */
+    scroll-behavior: smooth;
+}
+
+.demo-menu pre>pre {
+    border-radius: 10px !important;
+    padding: 1.5em !important;
+}
+
+.demo-menu h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 0 0 1.2em 0;
+}
+
+.demo-menu h2 {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2.5em;
+    cursor: pointer;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    font-size: 1.8em;
+
+    transition: all 0.05s ease-in-out;
+}
+
+.demo-menu h2:hover {
+    background-color: #f1f1f1;
+}
+
+.demo-menu h2.active {
+    /* background */
+    background: #3f8fcc;
+}
+
+.demo-menu h2.active a {
+    /* color */
+    color: white;
+}
+
+.demo-menu img {
+    max-width: 100%;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #3f8fcc;
+    color: white;
+    transition: all 0.05s ease-in-out;
+    opacity: 1;
+}
+
+a {
+    color: #007cc1;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #089eef;
+}

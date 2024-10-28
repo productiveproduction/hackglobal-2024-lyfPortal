@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/cesiumjs/1.105/Build/Cesium/Cesium.js"></script>
+  <link
+    href="https://ajax.googleapis.com/ajax/libs/cesiumjs/1.105/Build/Cesium/Widgets/widgets.css"
+    rel="stylesheet"
+  />
+	<title></title>
+</head>
+  <body>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.157.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.157.0/examples/jsm/",
+          "@lumaai/luma-web": "https://unpkg.com/@lumaai/luma-web@0.2.2/dist/library/luma-web.module.js",
+          "@ionic/react": "https://cdn.jsdelivr.net/npm/@ionic/react@8.2.0/+esm",
+          "cupertino-pane": "https://cdn.jsdelivr.net/npm/cupertino-pane@1.4.21/+esm"
+        }
+      }
+      </script>
+    <div id="react-root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
